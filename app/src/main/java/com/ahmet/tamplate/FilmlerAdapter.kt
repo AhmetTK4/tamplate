@@ -21,6 +21,7 @@ class FilmlerAdapter(private val mContext: Context, private val filmlerListesi: 
 {
 
     inner class CardTasarimNesneleriniTutucu(view:View):RecyclerView.ViewHolder(view){
+        var film_card:CardView
 
         var imageViewFilmResim:ImageView
         var textViewFilmBaslik:TextView
@@ -30,6 +31,7 @@ class FilmlerAdapter(private val mContext: Context, private val filmlerListesi: 
 
         init {
 
+            film_card =view.findViewById(R.id.film_card)
             imageViewFilmResim = view.findViewById(R.id.imageViewFilmResim)
             textViewFilmBaslik = view.findViewById(R.id.textViewFilmBaslik)
             textViewFilmFiyat = view.findViewById(R.id.textViewFilmFiyat)
@@ -57,8 +59,10 @@ class FilmlerAdapter(private val mContext: Context, private val filmlerListesi: 
         val url = "https://image.tmdb.org/t/p/w500${film.posterPath}"
 
         Picasso.get().load(url).into(holder.imageViewFilmResim)
-        holder.textViewFilmBaslik.text = film.title
         holder.textView.text = "${film.releaseDate}"
+        var tarih = film.releaseDate.split("-").toTypedArray()
+        var yıl = tarih[0]
+        holder.textViewFilmBaslik.text = film.title + "(" + yıl + ")"
         holder.textViewFilmFiyat.text = "${film.overview}"
 
 
@@ -68,8 +72,15 @@ class FilmlerAdapter(private val mContext: Context, private val filmlerListesi: 
             holder.imageViewFilmResim.setImageResource(
                 mContext.resources.getIdentifier(film.title, "drawable", mContext.packageName)
 
-
             )
+
+
+
+        holder.film_card.setOnClickListener {
+            val intent = Intent(mContext,DetayActivity::class.java)
+            intent.putExtra("filmNesne",film)
+            mContext.startActivity(intent)
+        }
 
 
         }

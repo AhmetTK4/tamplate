@@ -7,4 +7,5 @@ data class KategorilerCevap (
     @SerializedName("results")
     @Expose
     var kategoriler:List<Kategoriler>){
+
 }

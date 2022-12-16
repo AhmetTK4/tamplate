@@ -15,4 +15,11 @@ class ApiUtils {
         fun getDetaylarDaoInterface(): DetaylarDaoInterface{
             return RetrofitClient.getClient(BASE_URL).create(DetaylarDaoInterface::class.java)
         }
+        fun getBenzerlerDaoInterface(): BenzerlerDaoInterface{
+            return RetrofitClient.getClient(BASE_URL).create(BenzerlerDaoInterface::class.java)
+        }
+
+        fun getAramaDaoInterface(): AramaDaoInterface{
+            return RetrofitClient.getClient(BASE_URL).create(AramaDaoInterface::class.java)
+        }
     }}
