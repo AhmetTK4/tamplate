@@ -21,6 +21,9 @@ data class Kategoriler (@SerializedName("title")
                         @SerializedName("backdrop_path")
                         @Expose
                         var backdrop_path:String,
+                        @SerializedName("vote_average")
+                        @Expose
+                        var vote_average:String,
                         @SerializedName("release_date")
                         @Expose
                         var releaseDate: String): Serializable{
